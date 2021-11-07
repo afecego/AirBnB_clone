@@ -3,7 +3,7 @@
 import json
 import sys
 from models.base_model import BaseModel
-from models.user import User, State, City, Amenity, Place, Review
+from models import User, State, City, Amenity, Place, Review
 
 
 class FileStorage:

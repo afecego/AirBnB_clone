@@ -4,7 +4,7 @@ import cmd
 import shlex
 import models
 from models.base_model import BaseModel
-from models.user import User, State, City, Amenity, Place, Review
+from models import User, State, City, Amenity, Place, Review
 
 
 class HBNBCommand(cmd.Cmd):
