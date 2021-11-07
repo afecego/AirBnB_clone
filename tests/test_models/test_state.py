@@ -1,4 +1,5 @@
 #!/usr/bin/python3
-"""Unittest for console([..])
+"""
+Unittest for state([..])
 """
 import unittest

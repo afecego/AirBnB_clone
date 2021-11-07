@@ -1,4 +1,5 @@
 #!/usr/bin/python3
-"""Unittest for user([..])
+"""
+Unittest for user([..])
 """
 import unittest

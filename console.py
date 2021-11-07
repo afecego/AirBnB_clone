@@ -84,15 +84,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
         else:
-            base_model = BaseModel()
-            print(base_model.id)
-            base_model.save()
+            ins_dic = self.dicc[arg]()
+            print(ins_dic.id)
+            models.storage.save()
 
     def do_show(self, arg):
         """
         Prints the string representation of an instance\n
         """
-        token = arg.split(" ")
+        token = shlex.split(arg)
         if not token[0]:
             print("** class name missing **")
 
@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Deletes an instance based on the class name and id\n
         """
-        token = arg.split(" ")
+        token = shlex.split(arg)
         if not token[0]:
             print("** class name missing **")
 
@@ -190,4 +190,7 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
+    """
+    Main of the console
+    """
     HBNBCommand().cmdloop()
