@@ -93,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
         Prints the string representation of an instance\n
         """
         token = shlex.split(arg)
-        if not token[0]:
+        if len(token) == 0:
             print("** class name missing **")
 
         elif token[0] not in self.dicc:
