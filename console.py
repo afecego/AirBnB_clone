@@ -115,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on the class name and id\n
         """
         token = shlex.split(arg)
-        if not token[0]:
+        if len(token) == 0:
             print("** class name missing **")
 
         elif token[0] not in self.dicc:
