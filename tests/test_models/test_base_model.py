@@ -4,9 +4,10 @@ Unittest for base_model([..])
 """
 import unittest
 from models.base_model import BaseModel
+base_model = __import__('base_model').__init__
 
 
-class TestBaseModel(unittest.TestCase):
+class Test__init__(unittest.TestCase):
     """
     Test for BaseModel class
     """
