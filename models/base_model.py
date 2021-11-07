@@ -1,15 +1,42 @@
 #!/usr/bin/python3
-"""Creat class model"""
+"""
+Create class BaseModel
+"""
 import uuid
 from datetime import datetime
 import models
 
 
 class BaseModel:
-    """defines all common attributes/methods for other classes"""
+    """
+    Defines all common attributes/methods for other classes
+
+    Methods
+    -------
+    __init__
+        (Constructor of the class BaseModel)
+    __str__
+        (should print: [<class name>] (<self.id>) <self.__dict__>)
+    save
+        (updates the public instance attribute updated_at)
+    to_dict
+        (returns a dictionary containing all keys/values)
+    """
 
     def __init__(self, *args, **kwargs):
-        """method constructor"""
+        """
+        Constructor of the class BaseModel
+
+        Parameters
+        ----------
+        id: string
+            assign with an uuid when an instance is created
+        created_at: datetime
+            assign with the current datetime when an instance is created
+        updated_at: datetime
+            assign with the current datetime when an instance is created and it
+            will be updated every time you change your object
+        """
         if len(kwargs) == 0:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -25,17 +52,23 @@ class BaseModel:
                     setattr(self, key, value)
 
     def __str__(self):
-        """should print: [<class name>] (<self.id>) <self.__dict__>"""
+        """
+        should print: [<class name>] (<self.id>) <self.__dict__>
+        """
         return ("[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                       self.__dict__))
 
     def save(self):
-        """updates the public instance attribute updated_at"""
+        """
+        updates the public instance attribute updated_at
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values"""
+        """
+        returns a dictionary containing all keys/values
+        """
         dic = {}
         dic = self.__dict__.copy()
         dic["__class__"] = self.__class__.__name__

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Create file consola"""
+"""
+Create class HBNBCommand
+"""
 import cmd
 import shlex
 import models
@@ -13,7 +15,35 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """contains the entry point of the command interpreter"""
+    """
+    Contains the entry point of the command interpreter
+
+    Attributes
+    ----------
+    prompt: str
+        a formatted string to print out what the animal says
+    dicc: []
+        Contains the class name directions to his class
+
+    Methods
+    -------
+    do_EOF
+        (Exit command to exit the program)
+    do_quit
+        (Quit command to exit the program)
+    emptyline
+        (Don't do anything)
+    do_create
+        (Creates a new instance of BaseModel)
+    do_show
+        (Prints the string representation of an instance)
+    do_destroy
+        (Deletes an instance based on the class name and id)
+    do_all
+        (Prints all string representation of all instances)
+    do_update
+        (Updates an instance based on the class name and id)
+    """
     prompt = "(hbnb) "
     dicc = {
         "BaseModel": BaseModel,
@@ -26,19 +56,27 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def do_EOF(self, arg):
-        """Exit command to exit the program\n"""
+        """
+        Exit command to exit the program\n
+        """
         return True
 
     def do_quit(self, arg):
-        """Quit command to exit the program\n"""
+        """
+        Quit command to exit the program\n
+        """
         return True
 
     def emptyline(self):
-        """Don't do anything"""
+        """
+        Don't do anything\n
+        """
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel"""
+        """
+        Creates a new instance of BaseModel\n
+        """
         if not arg:
             print("** class name missing **")
 
@@ -51,7 +89,9 @@ class HBNBCommand(cmd.Cmd):
             base_model.save()
 
     def do_show(self, arg):
-        """Prints the string representation of an instance"""
+        """
+        Prints the string representation of an instance\n
+        """
         token = arg.split(" ")
         if not token[0]:
             print("** class name missing **")
@@ -71,7 +111,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id"""
+        """
+        Deletes an instance based on the class name and id\n
+        """
         token = arg.split(" ")
         if not token[0]:
             print("** class name missing **")
@@ -92,7 +134,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, arg):
-        """Prints all string representation of all instances"""
+        """
+        Prints all string representation of all instances\n
+        """
         if len(arg) == 0:
             ins = models.storage.all()
             all = []
@@ -114,7 +158,9 @@ class HBNBCommand(cmd.Cmd):
             print(all)
 
     def do_update(self, arg):
-        """Updates an instance based on the class name and id"""
+        """
+        Updates an instance based on the class name and id\n
+        """
         token = shlex.split(arg)
         if len(token) == 0:
             print("** class name missing **")

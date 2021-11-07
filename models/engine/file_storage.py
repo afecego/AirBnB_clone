@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""create class Storage"""
+"""
+Create class Storage
+"""
 import json
 import sys
 from models.base_model import BaseModel
@@ -12,7 +14,31 @@ from models.review import Review
 
 
 class FileStorage:
-    """serializes instances to a JSON file and deserializes JSON file"""
+    """
+    Serializes instances to a JSON file and deserializes JSON file
+
+    Attributes
+    ----------
+    __file_path: str
+        path to the JSON file
+    __objects: {}
+        Contains diccionary empty but will store all objects by <class name>.id
+    cla_dic: {}
+        Contains the class name directions to his class
+
+    Methods
+    -------
+    __init__
+        (Construct method to serialize instances class FileStorage)
+    all
+        (Returns the dictionary __objects)
+    new
+        (Sets in __objects the obj with key <obj class name>.id)
+    save
+        (Serializes __objects to the JSON file (path: __file_path))
+    reload
+        (Deserializes the JSON file to __objects)
+    """
     __file_path = "file.json"
     __objects = {}
     cla_dic = {
@@ -26,19 +52,27 @@ class FileStorage:
     }
 
     def __init__(self):
-        """Construct method to serialize instances"""
+        """
+        Construct method to serialize instances class FileStorage
+        """
 
     def all(self):
-        """returns the dictionary __objects"""
+        """
+        Returns the dictionary __objects
+        """
         return self.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id """
+        """
+        Sets in __objects the obj with key <obj class name>.id
+        """
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
+        """
+        Serializes __objects to the JSON file (path: __file_path)
+        """
         new_dic = {}
         for key, obj in self.__objects.items():
             new_dic[key] = obj.to_dict()
@@ -47,7 +81,9 @@ class FileStorage:
             f.write(json.dumps(new_dic))
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """
+        Deserializes the JSON file to __objects
+        """
         dic_tem = {}
         try:
             with open(self.__file_path, "r") as f:
