@@ -7,6 +7,7 @@ import models
 
 class BaseModel:
     """defines all common attributes/methods for other classes"""
+
     def __init__(self, *args, **kwargs):
         """method constructor"""
         if len(kwargs) == 0:
@@ -25,7 +26,8 @@ class BaseModel:
 
     def __str__(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return ("[{}] ({}) {}".format(self.__class__.__name__, self.id,
+                                      self.__dict__))
 
     def save(self):
         """updates the public instance attribute updated_at"""

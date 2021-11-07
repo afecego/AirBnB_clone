@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-"""Unittest for basemodeñ([..])
+"""Unittest for console([..])
 """
 import unittest
