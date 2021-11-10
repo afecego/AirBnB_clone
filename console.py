@@ -188,6 +188,18 @@ class HBNBCommand(cmd.Cmd):
                 setattr(actual, token[2], token[3])
                 models.storage.save()
 
+    def default(self, arg):
+        """counts the number objects in File Storage"""
+        arg = arg.split()
+        ins = models.storage.all()
+        count = 0
+        for key, value in ins.items():
+            x = value.__class__.__name__
+            key = f"{x}.count()"
+            if arg[-1] == key:
+                count += 1
+        print(count)
+
 
 if __name__ == '__main__':
     """
